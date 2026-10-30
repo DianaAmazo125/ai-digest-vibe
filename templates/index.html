@@ -14,9 +14,26 @@
             <h1>Умный AI-Дайджест <span>для новичков</span></h1>
             <p>Главные материалы, инструменты и лайфхаки из мира искусственного интеллекта в один клик.</p>
         </header>
-        <div class="grid">
+
+        <!-- БЛОК ПОИСКА И КНОПОК-ФИЛЬТРОВ КАК В УРОКЕ -->
+        <div class="filter-section">
+            <input type="text" id="search-input" placeholder="Поиск по карточкам...">
+            <div class="tags-container">
+                <button class="tag-btn active" onclick="filterTag('all')">Все темы</button>
+                <button class="tag-btn" onclick="filterTag('База')">База</button>
+                <button class="tag-btn" onclick="filterTag('Дизайн')">Дизайн</button>
+                <button class="tag-btn" onclick="filterTag('Видео')">Видео</button>
+                <button class="tag-btn" onclick="filterTag('Бизнес')">Бизнес</button>
+                <button class="tag-btn" onclick="filterTag('Код')">Код</button>
+                <button class="tag-btn" onclick="filterTag('Тренды')">Тренды</button>
+            </div>
+            <div class="counter" id="counter-text">Всего: 8 карточек</div>
+        </div>
+
+        <div class="grid" id="cards-grid">
             {% for card in cards %}
-            <div class="card">
+            <!-- Добавили data-tag для фильтрации на JS -->
+            <div class="card" data-tag="{{ card.tag }}" data-title="{{ card.title | lower }}">
                 <div class="card-tag">{{ card.tag }}</div>
                 <h3>{{ card.title }}</h3>
                 <p>{{ card.desc }}</p>
@@ -25,10 +42,50 @@
             {% endfor %}
         </div>
     </div>
+
+    <!-- ЖИВОЙ СКРИПТ ПОИСКА И ФИЛЬТРАЦИИ КНОПОК -->
     <script>
         function openMaterial(title) {
             alert('Вы открываете материал: ' + title + '\n\nКод работает отлично, страница готова к сдаче на GitHub! 🚀');
         }
+
+        // Логика фильтрации кнопок-тегов
+        function filterTag(tag) {
+            // Меняем активную кнопку
+            document.querySelectorAll('.tag-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const cards = document.querySelectorAll('.card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                if (tag === 'all' || card.getAttribute('data-tag') === tag) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            document.getElementById('counter-text').innerText = `Найдено: ${visibleCount} из 8`;
+        }
+
+        // Логика живого поиска из строки ввода
+        document.getElementById('search-input').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const title = card.getAttribute('data-title');
+                if (title.includes(query)) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            document.getElementById('counter-text').innerText = `Найдено: ${visibleCount} из 8`;
+        });
     </script>
 </body>
 </html>

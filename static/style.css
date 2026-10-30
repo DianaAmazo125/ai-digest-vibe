@@ -1,17 +1,223 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { background-color: #0b0c10; color: #c5c6c7; font-family: 'Inter', sans-serif; padding: 40px 20px; }
-.container { max-width: 1200px; margin: 0 auto; }
-header { text-align: center; margin-bottom: 60px; }
-.logo { font-weight: 800; color: #66fcf1; letter-spacing: 2px; margin-bottom: 20px; font-size: 1.5rem; }
-header h1 { font-size: 3rem; color: #fff; margin-bottom: 15px; font-weight: 800; }
-header h1 span { color: #66fcf1; }
-header p { font-size: 1.2rem; color: #45a29e; }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-.card { background-color: #1f2833; border: 1px solid #2f3b4c; border-radius: 16px; padding: 25px; position: relative; transition: all 0.4s ease; display: flex; flex-direction: column; justify-content: space-between; min-height: 250px; }
-.card:hover { transform: translateY(-10px); border-color: #66fcf1; box-shadow: 0 10px 30px rgba(102, 252, 241, 0.1); }
-.card-tag { position: absolute; top: 15px; right: 20px; background-color: rgba(102, 252, 241, 0.1); color: #66fcf1; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
-.card h3 { color: #fff; font-size: 1.4rem; margin-top: 15px; margin-bottom: 10px; }
-.card p { font-size: 0.95rem; line-height: 1.5; margin-bottom: 25px; color: #adadae; }
-.btn { background: transparent; border: 2px solid #66fcf1; color: #66fcf1; padding: 12px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; width: 100%; margin-top: auto; }
-.btn:hover { background: #66fcf1; color: #0b0c10; box-shadow: 0 0 15px #66fcf1; }
-@media (max-width: 768px) { header h1 { font-size: 2.2rem; } }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Эффект бесконечной дали: накладываем глубокий градиент и слои звездной пыли через CSS-генератор */
+    background: 
+        radial-gradient(circle at 50% 35%, rgba(168, 85, 247, 0.15) 0%, rgba(5, 5, 8, 0) 60%),
+        radial-gradient(circle at 20% 70%, rgba(102, 252, 241, 0.1) 0%, rgba(5, 5, 8, 0) 50%),
+        radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 50px 160px, #ddd, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 80px 120px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2.5px 2.5px at 110px 40px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 150px 200px, #bbb, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 190px 90px, #fff, rgba(0,0,0,0)),
+        #040406; /* Базовый глубокий цвет космоса */
+    background-repeat: repeat;
+    background-size: 100% 100%, 100% 100%, 250px 250px, 300px 300px, 400px 400px, 280px 280px, 350px 350px, 180px 180px, 220px 220px;
+    color: #e2e8f0;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    padding: 60px 20px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.logo {
+    font-weight: 800;
+    color: #66fcf1;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+    font-size: 1.6rem;
+    /* Текстовое неоновое свечение для логотипа */
+    text-shadow: 0 0 10px rgba(102, 252, 241, 0.6);
+}
+
+header h1 {
+    font-size: 3.5rem;
+    color: #fff;
+    margin-bottom: 20px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+header h1 span {
+    /* Космический градиент на тексте */
+    background: linear-gradient(45deg, #66fcf1, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+header p {
+    font-size: 1.25rem;
+    color: #94a3b8;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 35px;
+}
+
+.card {
+    /* Стеклянный эффект (Glassmorphism) для карточек */
+    background: rgba(30, 41, 59, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 280px;
+}
+
+.card:hover {
+    transform: translateY(-12px) scale(1.02);
+    border-color: rgba(168, 85, 247, 0.4);
+    /* Мягкая фиолетово-бирюзовая космическая тень */
+    box-shadow: 0 20px 40px rgba(168, 85, 247, 0.15), 0 0 30px rgba(102, 252, 241, 0.05);
+}
+
+.card-tag {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    background: rgba(168, 85, 247, 0.15);
+    color: #c084fc;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+.card h3 {
+    color: #fff;
+    font-size: 1.45rem;
+    margin-top: 20px;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #94a3b8;
+}
+
+.btn {
+    background: linear-gradient(45deg, rgba(102, 252, 241, 0.1), rgba(168, 85, 247, 0.1));
+    border: 2px solid #66fcf1;
+    color: #66fcf1;
+    padding: 14px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: auto;
+    letter-spacing: 0.5px;
+}
+
+.btn:hover {
+    background: linear-gradient(45deg, #66fcf1, #a855f7);
+    color: #050508;
+    box-shadow: 0 0 20px rgba(102, 252, 241, 0.4);
+    border-color: transparent;
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.4rem;
+    }
+    body {
+        padding: 40px 15px;
+    }
+}
+
+/* Стили для строки поиска и контейнера тегов */
+.filter-section {
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#search-input {
+    width: 100%;
+    max-width: 600px;
+    background: rgba(30, 41, 59, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 16px 25px;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+#search-input:focus {
+    border-color: #66fcf1;
+    box-shadow: 0 0 15px rgba(102, 252, 241, 0.2);
+}
+
+.tags-container {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.tag-btn {
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #94a3b8;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tag-btn:hover {
+    color: #fff;
+    border-color: rgba(102, 252, 241, 0.5);
+    background: rgba(102, 252, 241, 0.05);
+}
+
+.tag-btn.active {
+    background: linear-gradient(45deg, #66fcf1, #a855f7);
+    color: #050508;
+    border-color: transparent;
+    box-shadow: 0 0 15px rgba(102, 252, 241, 0.3);
+}
+
+.counter {
+    color: #45a29e;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
