@@ -27,7 +27,7 @@
                 <button class="tag-btn" onclick="filterTag('Код')">Код</button>
                 <button class="tag-btn" onclick="filterTag('Тренды')">Тренды</button>
             </div>
-            <div class="counter" id="counter-text">Всего: 8 карточек</div>
+            <div class="counter" id="counter-text">Найдено: 8 из 8</div>
         </div>
 
         <div class="grid" id="cards-grid">
@@ -71,21 +71,30 @@
 
         // Логика живого поиска из строки ввода
         document.getElementById('search-input').addEventListener('input', function(e) {
-            const query = e.target.value.toLowerCase();
-            const cards = document.querySelectorAll('.card');
-            let visibleCount = 0;
+    const query = e.target.value.toLowerCase().trim();
+    const cards = document.querySelectorAll('.card');
+    let visibleCount = 0;
 
-            cards.forEach(card => {
-                const title = card.getAttribute('data-title');
-                if (title.includes(query)) {
-                    card.style.display = 'flex';
-                    visibleCount++;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-            document.getElementById('counter-text').innerText = `Найдено: ${visibleCount} из 8`;
-        });
+    cards.forEach(card => {
+        // Ищем заголовки h3 или h5 (или любой класс заголовка, который у тебя внутри карточки)
+        const titleElement = card.querySelector('h3') || card.querySelector('.card-title') || card;
+        const titleText = titleElement.textContent.toLowerCase();
+
+        if (titleText.includes(query)) {
+            card.style.display = 'flex'; // возвращаем отображение, как в твоем filterTag
+            visibleCount++;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+
+    // Обновляем твой счетчик найденных материалов на лету!
+    const counter = document.getElementById('counter-text');
+    if (counter) {
+        counter.innerText = `Найдено: ${visibleCount} из 8`;
+    }
+});
+
     </script>
 </body>
 </html>
