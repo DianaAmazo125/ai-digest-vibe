@@ -27,8 +27,18 @@
                 <button class="tag-btn" onclick="filterTag('Код')">Код</button>
                 <button class="tag-btn" onclick="filterTag('Тренды')">Тренды</button>
             </div>
-            <div class="counter" id="counter-text">Найдено: 8 из 8</div>
+            <div class="counter" id="counter-text">Найдено: {{ total_cards }} из {{ total_cards }}</div>
+
         </div>
+
+        <!-- Стильный Glassmorphism блок под верхний баннер РСЯ -->
+<div class="container mb-5">
+    <div class="p-3 text-center" style="background: rgba(255,255,255,0.02); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px;">
+        <span class="text-muted small d-block mb-2" style="font-size: 10px; letter-spacing: 1px; text-transform: uppercase;">Реклама</span>
+        <!-- Место для будущего кода от Яндекса -->
+        <div id="yandex_rtb_top" class="text-info opacity-50 py-2">▶ Здесь будет крутиться верхний баннер РСЯ 🪐</div>
+    </div>
+</div>
 
         <div class="grid" id="cards-grid">
             {% for card in cards %}
@@ -37,9 +47,20 @@
                 <div class="card-tag">{{ card.tag }}</div>
                 <h3>{{ card.title }}</h3>
                 <p>{{ card.desc }}</p>
-                <button class="btn" onclick="openMaterial('{{ card.title }}')">Открыть материал</button>
+                <a href="{{ card.cpa_url }}" target="_blank" class="btn" style="text-decoration: none; text-align: center;">Открыть материал</a>
+
             </div>
-            {% endfor %}
+                   <!-- Если это вторая карточка по счету, выводим рекламный блок прямо в сетку -->
+        {% if loop.index == 2 %}
+        <div class="card" style="background: rgba(168, 85, 247, 0.03); backdrop-filter: blur(12px); border: 1px dashed rgba(168, 85, 247, 0.3); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+            <span class="text-muted small mb-3" style="font-size: 10px; letter-spacing: 1px; text-transform: uppercase;">Рекламный блок</span>
+            <h5 style="color: #a855f7; margin-bottom: 10px;">Интересное предложение</h5>
+            <p class="text-muted small px-2" style="font-size: 13px; line-height: 1.4;">Яндекс подберет актуальную рекламу под интересы каждого посетителя вашего дайджеста.</p>
+            <div id="yandex_rtb_grid" class="mt-3 opacity-50 small" style="font-size: 12px; color: #38bdf8;">Реклама РСЯ ▶</div>
+        </div>
+        {% endif %}
+
+     {% endfor %}
         </div>
     </div>
 
