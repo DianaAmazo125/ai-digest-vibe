@@ -1,20 +1,54 @@
-from flask import Flask, render_template
+import os
+import json
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
+app.secret_key = "diana_amazo_vibe_secret"
+
+def load_digest_data():
+    """Загружает список нейросетей из JSON-файла-базы данных"""
+    json_path = os.path.join(app.root_path, 'data.json')
+    
+    # Если файла еще нет или он пустой, отдаем базовый каркас для теста
+    if not os.path.exists(json_path) or os.path.getsize(json_path) == 0:
+        default_data = [
+            {
+                "id": 1,
+                "title": "Telegram-бот @amazo_first_bot",
+                "desc": "Коммерческий MVP-ассистент для автоматизации бизнес-процессов на заказ.",
+                "tag": "bots",
+                "tag_name": "Боты",
+                "cpa_url": "https://t.me"
+            },
+            {
+                "id": 2,
+                "title": "Генератор Glassmorphism",
+                "desc": "Инструмент для создания космических CSS-эффектов матового стекла.",
+                "tag": "design",
+                "tag_name": "Дизайн",
+                "cpa_url": "#"
+            }
+        ]
+        with open(json_path, 'w', encoding='utf-8') as f:
+            json.dump(default_data, f, ensure_ascii=False, indent=4)
+        return default_data
+
+    with open(json_path, 'r', encoding='utf-8') as f:
+        return json.load(f)
 
 @app.route('/')
-def home():
-    cards = [
-        {"id": 1, "title": "ChatGPT для новичков", "desc": "Как правильно писать промпты, чтобы нейросеть делала работу за вас.", "tag": "База"},
-        {"id": 2, "title": "Генерация картинок в Midjourney", "desc": "Создаем фотореалистичные изображения по текстовому описанию.", "tag": "Дизайн"},
-        {"id": 3, "title": "Нейросети для видео", "desc": "Обзор сервисов Sora и Runway для создания роликов из текста.", "tag": "Видео"},
-        {"id": 4, "title": "Автоматизация рутины", "desc": "Как ИИ-агенты могут отвечать на почту и собирать аналитику.", "tag": "Бизнес"},
-        {"id": 5, "title": "ИИ-переводчики нового поколения", "desc": "Прощай, старый перевод: как DeepL сохраняет контекст и юмор.", "tag": "Языки"},
-        {"id": 6, "title": "Создание музыки через Suno AI", "desc": "Пишем полноценный хит с вокалом и аранжировкой за 2 минуты.", "tag": "Музыка"},
-        {"id": 7, "title": "ИИ в программировании", "desc": "Как инструменты вроде GitHub Copilot ускоряют написание кода.", "tag": "Код"},
-        {"id": 8, "title": "Будущее AI: Что нас ждет?", "desc": "Разбираемся с понятием AGI и как ИИ изменит профессии к 2030 году.", "tag": "Тренды"}
-    ]
-    return render_template('index.html', cards=cards)
+def index():
+    # Загружаем динамические карточки из data.json
+    cards = load_digest_data()
+    
+    # Считаем общее количество для нашего JS-счетчика
+    total_cards = len(cards)
+    
+    return render_template(
+        'index.html', 
+        cards=cards, 
+        total_cards=total_cards
+    )
 
 if __name__ == '__main__':
     app.run(debug=True)
