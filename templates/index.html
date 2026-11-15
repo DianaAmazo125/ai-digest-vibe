@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Дайджест: Твой старт в мире ИИ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://googleapis.com" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">AI.VIBE</div>
+            <h1>Умный AI-Дайджест <span>для новичков</span></h1>
+            <p>Главные материалы, инструменты и лайфхаки из мира искусственного интеллекта в один клик.</p>
+        </header>
+        <div class="grid">
+            {% for card in cards %}
+            <div class="card">
+                <div class="card-tag">{{ card.tag }}</div>
+                <h3>{{ card.title }}</h3>
+                <p>{{ card.desc }}</p>
+                <button class="btn" onclick="openMaterial('{{ card.title }}')">Открыть материал</button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        function openMaterial(title) {
+            alert('Вы открываете материал: ' + title + '\n\nКод работает отлично, страница готова к сдаче на GitHub! 🚀');
+        }
+    </script>
+</body>
+</html>

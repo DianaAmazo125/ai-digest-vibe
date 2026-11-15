@@ -1,0 +1,17 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background-color: #0b0c10; color: #c5c6c7; font-family: 'Inter', sans-serif; padding: 40px 20px; }
+.container { max-width: 1200px; margin: 0 auto; }
+header { text-align: center; margin-bottom: 60px; }
+.logo { font-weight: 800; color: #66fcf1; letter-spacing: 2px; margin-bottom: 20px; font-size: 1.5rem; }
+header h1 { font-size: 3rem; color: #fff; margin-bottom: 15px; font-weight: 800; }
+header h1 span { color: #66fcf1; }
+header p { font-size: 1.2rem; color: #45a29e; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+.card { background-color: #1f2833; border: 1px solid #2f3b4c; border-radius: 16px; padding: 25px; position: relative; transition: all 0.4s ease; display: flex; flex-direction: column; justify-content: space-between; min-height: 250px; }
+.card:hover { transform: translateY(-10px); border-color: #66fcf1; box-shadow: 0 10px 30px rgba(102, 252, 241, 0.1); }
+.card-tag { position: absolute; top: 15px; right: 20px; background-color: rgba(102, 252, 241, 0.1); color: #66fcf1; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+.card h3 { color: #fff; font-size: 1.4rem; margin-top: 15px; margin-bottom: 10px; }
+.card p { font-size: 0.95rem; line-height: 1.5; margin-bottom: 25px; color: #adadae; }
+.btn { background: transparent; border: 2px solid #66fcf1; color: #66fcf1; padding: 12px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; width: 100%; margin-top: auto; }
+.btn:hover { background: #66fcf1; color: #0b0c10; box-shadow: 0 0 15px #66fcf1; }
+@media (max-width: 768px) { header h1 { font-size: 2.2rem; } }
