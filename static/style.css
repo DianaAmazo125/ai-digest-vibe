@@ -261,3 +261,19 @@ header p {
     font-size: 0.9rem;
     font-weight: 600;
 }
+
+/* Плашка маркировки рекламы (erid) внутри карточки */
+.erid-badge {
+    width: 100%;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    background: rgba(148, 163, 184, 0.08);
+    border: 1px solid rgba(148, 163, 184, 0.15);
+    color: #64748b;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-align: center;
+    word-break: break-word;
+}
