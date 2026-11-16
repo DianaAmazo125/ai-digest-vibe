@@ -131,23 +131,33 @@
     },
     {
         "id": 14,
-        "title": "Курс «Нейросети для заработка с нуля»",
-        "desc": "Пошаговая программа монетизации ИИ: промпты, услуги на заказ, контент и первые продажи. Подключён по партнёрской программе — переход по ссылке из карточки, для автора дайджеста это комиссия с продажи.",
+        "title": "Бесплатная Онлайн-Школа Евгения Вергуса",
+        "desc": "Пошаговый бесплатный практикум по созданию и запуску собственного сайта с нуля",
         "tag": "education",
         "tag_name": "Обучение и гайды",
-        "cpa_url": "https://example.com/partner/neuro-income",
-        "affiliate_url": "https://example.com/partner/neuro-income?ref=ai-vibe-digest",
-        "erid": "REPLACE_WITH_REAL_ERID_1"
+        "cpa_url": "https://sovetywebmastera.pro/school-new",
+        "affiliate_url": "https://sovetywebmastera.pro/school-new?gcao=28266&gcpc=1f1e7",
+        "erid": ""
     },
     {
         "id": 15,
-        "title": "Курс «Промпт-инжиниринг: профессия 2026»",
-        "desc": "Системный курс по промптам: структура запросов, работа с контекстом, автоматизация рутины и сборка ИИ-ассистентов под задачи бизнеса. Партнёрская программа с оплатой за переход и продажу.",
+        "title": "Бесплатный курс: заработок на партнёрских программах",
+        "desc": "Базовый курс для новичков о том, как выстраивать партнёрские воронки и получать комиссию",
         "tag": "education",
         "tag_name": "Обучение и гайды",
-        "cpa_url": "https://example.com/partner/prompt-engineering",
-        "affiliate_url": "https://example.com/partner/prompt-engineering?ref=ai-vibe-digest",
-        "erid": "REPLACE_WITH_REAL_ERID_2"
+        "cpa_url": "https://sovetywebmastera.pro/knzpp",
+        "affiliate_url": "https://sovetywebmastera.pro/knzpp?gcao=6648&gcpc=1f1e7",
+        "erid": ""
+    },
+    {
+        "id": 28,
+        "title": "Видеокурс: Нейросети для заработка",
+        "desc": "Практический курс по применению ИИ-инструментов для создания контента и монетизации",
+        "tag": "education",
+        "tag_name": "Обучение и гайды",
+        "cpa_url": "https://sovetywebmastera.pro/video_neyroseti_dlya_zarabotka",
+        "affiliate_url": "https://sovetywebmastera.pro/video_neyroseti_dlya_zarabotka?gcao=36384&gcpc=1f1e7",
+        "erid": ""
     },
     {
         "id": 16,
