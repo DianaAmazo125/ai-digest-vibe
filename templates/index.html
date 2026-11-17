@@ -53,7 +53,7 @@
         <div class="grid" id="cards-grid">
             {% for card in cards %}
             <!-- data-tag содержит название категории, по нему работает фильтрация на JS -->
-            <div class="card" data-tag="{{ card.tag_name }}" data-title="{{ card.title | lower }}">
+            <div class="card catalog-card" data-tag="{{ card.tag_name }}" data-title="{{ card.title | lower }}">
                 <div class="card-tag">{{ card.tag_name }}</div>
                 <h3>{{ card.title }}</h3>
                 <p>{{ card.desc }}</p>
@@ -107,6 +107,12 @@
             alert('Вы открываете материал: ' + title + '\n\nКод работает отлично, страница готова к сдаче на GitHub! 🚀');
         }
 
+        // Кроме карточек каталога, в сетке есть встроенный рекламный блок РСЯ:
+        // у него тоже класс .card, но в счётчик «Найдено» он попадать не должен.
+        function isCatalogCard(card) {
+            return card.classList.contains('catalog-card');
+        }
+
         // Логика фильтрации кнопок-тегов
         function filterTag(tag) {
             // Меняем активную кнопку
@@ -119,7 +125,10 @@
             cards.forEach(card => {
                 if (tag === 'all' || card.getAttribute('data-tag') === tag) {
                     card.style.display = 'flex';
-                    visibleCount++;
+                    // считаем только настоящие карточки каталога, без рекламного блока
+                    if (isCatalogCard(card)) {
+                        visibleCount++;
+                    }
                 } else {
                     card.style.display = 'none';
                 }
@@ -140,7 +149,10 @@
 
         if (titleText.includes(query)) {
             card.style.display = 'flex'; // возвращаем отображение, как в твоем filterTag
-            visibleCount++;
+            // считаем только настоящие карточки каталога, без рекламного блока
+            if (isCatalogCard(card)) {
+                visibleCount++;
+            }
         } else {
             card.style.display = 'none';
         }
