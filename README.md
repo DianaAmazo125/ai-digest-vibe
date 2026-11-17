@@ -233,7 +233,7 @@ digest_site/
 прямо в `templates/index.html`:
 
 - Telegram-канал — `https://t.me/diana_ai_lab`;
-- ВКонтакте — `https://vk.ru`.
+- ВКонтакте — `https://vk.ru/diana_ai_lab`.
 
 Учтите: домен `t.me` может не открываться с части российских провайдеров — в этом случае кнопка
 сработает внутри приложения Telegram.
