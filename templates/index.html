@@ -13,6 +13,18 @@
             <div class="logo">AI.VIBE</div>
             <h1>Умный AI-Дайджест <span>для новичков</span></h1>
             <p>Главные материалы, инструменты и лайфхаки из мира искусственного интеллекта в один клик.</p>
+
+            <!-- Кнопки наших официальных площадок -->
+            <div class="social-links">
+                <a class="social-btn tg" href="https://t.me" target="_blank" rel="noopener" aria-label="Telegram-канал">
+                    <span class="social-icon">TG</span>
+                    <span>Telegram-канал</span>
+                </a>
+                <a class="social-btn vk" href="https://vk.ru" target="_blank" rel="noopener" aria-label="ВКонтакте">
+                    <span class="social-icon">VK</span>
+                    <span>ВКонтакте</span>
+                </a>
+            </div>
         </header>
 
         <!-- БЛОК ПОИСКА И КНОПОК-ФИЛЬТРОВ -->
@@ -48,7 +60,7 @@
 
                 <!-- Плашка маркировки рекламы: выводится только если в карточке указан erid -->
                 {% if card.erid %}
-                <div class="erid-badge">Реклама · erid: {{ card.erid }}</div>
+                <div class="erid-badge">Реклама.{% if card.advertiser %} {{ card.advertiser }} ·{% endif %} erid: {{ card.erid }}</div>
                 {% endif %}
 
                 <!-- Партнёрская ссылка приоритетнее обычной; если её нет — ведём по основной -->
@@ -70,6 +82,23 @@
 
      {% endfor %}
         </div>
+
+        <footer class="site-footer">
+            <div class="social-links">
+                <a class="social-btn tg" href="https://t.me" target="_blank" rel="noopener" aria-label="Telegram-канал">
+                    <span class="social-icon">TG</span>
+                    <span>Telegram-канал</span>
+                </a>
+                <a class="social-btn vk" href="https://vk.ru" target="_blank" rel="noopener" aria-label="ВКонтакте">
+                    <span class="social-icon">VK</span>
+                    <span>ВКонтакте</span>
+                </a>
+            </div>
+            <p class="footer-note">
+                AI.VIBE — дайджест нейросетей и ИИ-сервисов, доступных из России.
+                Часть ссылок ведёт на сервисы по партнёрским программам, такие карточки помечены маркировкой «Реклама» с токеном erid.
+            </p>
+        </footer>
     </div>
 
     <!-- ЖИВОЙ СКРИПТ ПОИСКА И ФИЛЬТРАЦИИ КНОПОК -->
