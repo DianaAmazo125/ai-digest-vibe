@@ -368,7 +368,7 @@
         "desc": "Универсальный агрегатор и API-шлюз для работы с языковыми моделями, генерацией изображений и видео с оплатой картой РФ и СБП.",
         "tag": "aggregators",
         "tag_name": "Агрегаторы РФ",
-        "cpa_url": "https://gptunnel.ru/",
+        "cpa_url": "https://gptunnel.ru/?ref=6b0344d02e4dd478e0b87192",
         "affiliate_url": "",
         "erid": "",
         "features": ["Оплата картой РФ", "API-шлюз"]

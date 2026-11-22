@@ -153,19 +153,16 @@ header p {
 }
 
 .card:hover .btn {
-    background: color-mix(in srgb, var(--tag-color, #66fcf1) 85%, rgba(10, 10, 20, 0.9));
+    background: color-mix(in srgb, var(--tag-color, #66fcf1) 12%, transparent);
     border-color: var(--tag-color, #66fcf1);
-    color: #ffffff;
-    box-shadow: 0 0 14px var(--tag-color, #66fcf1), 0 0 28px color-mix(in srgb, var(--tag-color, #66fcf1) 55%, transparent);
-    text-shadow: 0 0 6px color-mix(in srgb, var(--tag-color, #66fcf1) 70%, transparent);
+    color: var(--tag-color, #66fcf1);
 }
 
 .card:hover .btn:hover {
-    background: linear-gradient(135deg, var(--tag-color, #66fcf1), var(--tag-color-dark, #a855f7));
+    background: color-mix(in srgb, var(--tag-color, #66fcf1) 75%, rgba(10, 10, 20, 0.92));
     color: #ffffff;
     border-color: var(--tag-color, #66fcf1);
-    box-shadow: 0 0 20px var(--tag-color, #66fcf1), 0 0 40px var(--tag-color, #66fcf1), 0 0 60px color-mix(in srgb, var(--tag-color, #66fcf1) 45%, transparent);
-    transform: scale(1.03);
+    box-shadow: 0 0 12px color-mix(in srgb, var(--tag-color, #66fcf1) 80%, transparent), 0 0 22px color-mix(in srgb, var(--tag-color, #66fcf1) 40%, transparent);
 }
 
 .card-tag {
@@ -256,10 +253,10 @@ header p {
 }
 
 .btn:hover {
-    background: color-mix(in srgb, var(--tag-color, #66fcf1) 85%, rgba(10, 10, 20, 0.9));
-    border-color: var(--tag-color, #66fcf1);
+    background: color-mix(in srgb, var(--tag-color, #66fcf1) 75%, rgba(10, 10, 20, 0.92));
     color: #ffffff;
-    box-shadow: 0 0 14px var(--tag-color, #66fcf1), 0 0 28px color-mix(in srgb, var(--tag-color, #66fcf1) 55%, transparent);
+    border-color: var(--tag-color, #66fcf1);
+    box-shadow: 0 0 12px color-mix(in srgb, var(--tag-color, #66fcf1) 80%, transparent), 0 0 22px color-mix(in srgb, var(--tag-color, #66fcf1) 40%, transparent);
 }
 
 @media (max-width: 768px) {
