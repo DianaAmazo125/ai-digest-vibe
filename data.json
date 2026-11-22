@@ -7,7 +7,8 @@
         "tag_name": "Китайские модели",
         "cpa_url": "https://chat.deepseek.com",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["Бесплатный тариф", "Длинный контекст"]
     },
     {
         "id": 2,
@@ -17,7 +18,8 @@
         "tag_name": "Китайские модели",
         "cpa_url": "https://chat.deepseek.com",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["Открытые веса", "Локальный запуск"]
     },
     {
         "id": 3,
@@ -27,7 +29,8 @@
         "tag_name": "Китайские модели",
         "cpa_url": "https://chat.qwen.ai",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["Бесплатный тариф", "Без VPN"]
     },
     {
         "id": 4,
@@ -37,7 +40,8 @@
         "tag_name": "Китайские модели",
         "cpa_url": "https://ollama.com/library/qwq",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["Открытые веса", "Локальный запуск"]
     },
     {
         "id": 5,
@@ -47,7 +51,8 @@
         "tag_name": "Китайские модели",
         "cpa_url": "https://www.kimi.com",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["Бесплатный", "Сверхдлинный контекст"]
     },
     {
         "id": 6,
@@ -57,7 +62,8 @@
         "tag_name": "Китайские модели",
         "cpa_url": "https://chatglm.cn",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["Бесплатный тариф", "Без VPN"]
     },
     {
         "id": 7,
@@ -67,7 +73,8 @@
         "tag_name": "Видео",
         "cpa_url": "https://kling.ai",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["Бесплатные кредиты", "Без VPN"]
     },
     {
         "id": 8,
@@ -77,7 +84,8 @@
         "tag_name": "Видео",
         "cpa_url": "https://minimax.io",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["Веб-интерфейс", "Физика движения"]
     },
     {
         "id": 9,
@@ -87,7 +95,8 @@
         "tag_name": "Видео",
         "cpa_url": "https://capcut.com",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["Многошотовая раскадровка", "Кинематографичные сцены"]
     },
     {
         "id": 10,
@@ -97,7 +106,8 @@
         "tag_name": "Агрегаторы РФ",
         "cpa_url": "https://proxyapi.ru",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["Оплата картой РФ", "API-доступ"]
     },
     {
         "id": 11,
@@ -105,9 +115,10 @@
         "desc": "Веб-платформа с доступом к GPT, Claude, Midjourney и DeepSeek в одном интерфейсе — работать можно прямо в браузере, есть и Telegram-бот. Оплата в рублях, есть бесплатный стартовый лимит — самый простой вход в платные модели из РФ.",
         "tag": "aggregators",
         "tag_name": "Агрегаторы РФ",
-        "cpa_url": "https://bothub.chat",
+        "cpa_url": "https://bothub.chat/?invitedBy=GPyZTnK9kbH2m6WeBPy0R",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["Оплата в рублях", "Telegram-бот"]
     },
     {
         "id": 12,
@@ -117,7 +128,8 @@
         "tag_name": "Агрегаторы РФ",
         "cpa_url": "https://syntx.ai",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["100+ моделей", "Бесплатные токены"]
     },
     {
         "id": 35,
@@ -125,9 +137,10 @@
         "desc": "Российский агрегатор: один API-ключ и веб-чат к 120+ моделям (ChatGPT, Claude, Gemini, DeepSeek, FLUX, Kling) с оплатой российскими картами и СБП. Работает из РФ без VPN, после регистрации дают бесплатные кредиты на тест.",
         "tag": "aggregators",
         "tag_name": "Агрегаторы РФ",
-        "cpa_url": "https://vsegpt.ru",
+        "cpa_url": "https://vsegpt.ru/?cmpad=p31623869509",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["Оплата картой РФ", "Без VPN"]
     },
     {
         "id": 14,
@@ -170,7 +183,8 @@
         "tag_name": "Обучение и гайды",
         "cpa_url": "https://stepik.org",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["Бесплатно", "Для новичков"]
     },
     {
         "id": 17,
@@ -180,7 +194,8 @@
         "tag_name": "Обучение и гайды",
         "cpa_url": "https://habr.com/ru/hubs/artificial_intelligence/",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["Справочник", "Бесплатно"]
     },
     {
         "id": 18,
@@ -190,7 +205,8 @@
         "tag_name": "Дизайн",
         "cpa_url": "https://shedevrum.ai",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["Бесплатно", "Без VPN"]
     },
     {
         "id": 36,
@@ -200,7 +216,8 @@
         "tag_name": "Дизайн",
         "cpa_url": "https://recraft.ai",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["Векторная графика", "Бесплатный тариф"]
     },
     {
         "id": 20,
@@ -210,7 +227,8 @@
         "tag_name": "База",
         "cpa_url": "https://giga.chat",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["Бесплатно", "Без VPN"]
     },
     {
         "id": 21,
@@ -220,7 +238,8 @@
         "tag_name": "База",
         "cpa_url": "https://alice.yandex.ru",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["Голосовой помощник", "Бесплатно"]
     },
     {
         "id": 22,
@@ -230,7 +249,8 @@
         "tag_name": "Код",
         "cpa_url": "https://ollama.com",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["Open Source", "Локальный запуск"]
     },
     {
         "id": 23,
@@ -238,9 +258,10 @@
         "desc": "Надёжный российский хостинг для деплоя Flask-сайтов, скриптов и круглосуточного запуска Telegram-ботов на мощных ИИ-серверах. Оплата в рублях, почасовая тарификация, готовые образы приложений.",
         "tag": "code",
         "tag_name": "Код",
-        "cpa_url": "https://timeweb.cloud",
+        "cpa_url": "https://timeweb.cloud/?i=151583",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["Оплата в рублях", "Почасовая тарификация"]
     },
     {
         "id": 37,
@@ -250,7 +271,8 @@
         "tag_name": "Код",
         "cpa_url": "https://sourcecraft.dev",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["Оплата в рублях", "Бесплатный старт"]
     },
     {
         "id": 24,
@@ -260,7 +282,8 @@
         "tag_name": "Бизнес",
         "cpa_url": "https://n8n.io",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["Open Source", "Low-code"]
     },
     {
         "id": 25,
@@ -268,9 +291,10 @@
         "desc": "Мощный русскоязычный генератор продающих постов, заголовков и отзывов для маркетплейсов. Помогает SMM-специалистам и селлерам экономить часы рутины и держать стабильный поток контента.",
         "tag": "business",
         "tag_name": "Бизнес",
-        "cpa_url": "https://turbotext.ru",
+        "cpa_url": "https://www.turbotext.ru/photo_ai/create?rfid=2320827",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["Русскоязычный", "Для маркетплейсов"]
     },
     {
         "id": 27,
@@ -280,7 +304,8 @@
         "tag_name": "Тренды",
         "cpa_url": "https://habr.com/ru/hubs/artificial_intelligence/",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["Аналитика", "Тренды 2026"]
     },
     {
         "id": 29,
@@ -290,7 +315,8 @@
         "tag_name": "Мировые модели",
         "cpa_url": "https://claude.ai",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["Для кода", "Может требовать VPN"]
     },
     {
         "id": 30,
@@ -300,7 +326,8 @@
         "tag_name": "Мировые модели",
         "cpa_url": "https://chatgpt.com",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["Универсальный", "Может требовать VPN"]
     },
     {
         "id": 31,
@@ -310,7 +337,8 @@
         "tag_name": "Мировые модели",
         "cpa_url": "https://cursor.com",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["ИИ-редактор", "Без VPN"]
     },
     {
         "id": 32,
@@ -320,6 +348,40 @@
         "tag_name": "Мировые модели",
         "cpa_url": "https://gemini.google.com",
         "affiliate_url": "",
-        "erid": ""
+        "erid": "",
+        "features": ["Мультимодальный", "Огромный контекст"]
+    },
+    {
+        "id": 38,
+        "title": "GoGPT",
+        "desc": "Российский мультимодельный агрегатор нейросетей в браузере (ChatGPT, Claude, Midjourney, Flux) с оплатой в рублях без VPN.",
+        "tag": "aggregators",
+        "tag_name": "Агрегаторы РФ",
+        "cpa_url": "https://chat.gogpt.ru/b217201",
+        "affiliate_url": "",
+        "erid": "",
+        "features": ["Оплата в рублях", "Без VPN"]
+    },
+    {
+        "id": 39,
+        "title": "GPTunnel",
+        "desc": "Универсальный агрегатор и API-шлюз для работы с языковыми моделями, генерацией изображений и видео с оплатой картой РФ и СБП.",
+        "tag": "aggregators",
+        "tag_name": "Агрегаторы РФ",
+        "cpa_url": "https://gptunnel.ru/",
+        "affiliate_url": "",
+        "erid": "",
+        "features": ["Оплата картой РФ", "API-шлюз"]
+    },
+    {
+        "id": 40,
+        "title": "Beget",
+        "desc": "Российский облачный провайдер и хостинг для деплоя Python-ботов, веб-приложений, баз данных и API-сервисов.",
+        "tag": "code",
+        "tag_name": "Код",
+        "cpa_url": "https://beget.com/",
+        "affiliate_url": "",
+        "erid": "",
+        "features": ["Оплата в рублях", "Хостинг"]
     }
 ]

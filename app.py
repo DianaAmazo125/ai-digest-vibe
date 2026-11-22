@@ -45,6 +45,16 @@ def load_digest_data():
     with open(json_path, 'r', encoding='utf-8') as f:
         return json.load(f)
 
+@app.route('/b238bb2c00da1224d5d7d3f2dd896277.txt')
+def timeweb_verify():
+    """Файл подтверждения прав на домен для Timeweb Cloud"""
+    static_path = os.path.join(app.root_path, 'static', 'b238bb2c00da1224d5d7d3f2dd896277.txt')
+    if os.path.exists(static_path):
+        with open(static_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        return content, 200, {'Content-Type': 'text/plain; charset=utf-8'}
+    return 'Not found', 404
+
 @app.route('/')
 def index():
     # Загружаем динамические карточки из data.json

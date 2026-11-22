@@ -53,14 +53,26 @@
         <div class="grid" id="cards-grid">
             {% for card in cards %}
             <!-- data-tag содержит название категории, по нему работает фильтрация на JS -->
-            <div class="card catalog-card" data-tag="{{ card.tag_name }}" data-title="{{ card.title | lower }}">
+            <div class="card catalog-card" data-tag="{{ card.tag_name }}" data-title="{{ card.title | lower }}" data-rawtag="{{ card.tag }}">
                 <div class="card-tag">{{ card.tag_name }}</div>
-                <h3>{{ card.title }}</h3>
+                <div class="card-header-row">
+                    <div class="card-monogram" style="background: linear-gradient(135deg, var(--tag-color, #a855f7), var(--tag-color-dark, #7c3aed));">{% if card.title %}{{ card.title[0] }}{% else %}N{% endif %}</div>
+                    <h3>{{ card.title }}</h3>
+                </div>
                 <p>{{ card.desc }}</p>
 
                 <!-- Плашка маркировки рекламы: выводится только если в карточке указан erid -->
                 {% if card.erid %}
                 <div class="erid-badge">Реклама.{% if card.advertiser %} {{ card.advertiser }} ·{% endif %} erid: {{ card.erid }}</div>
+                {% endif %}
+
+                <!-- Нейтральные теги-пилюли (features) -->
+                {% if card.features %}
+                <div class="features-row">
+                    {% for feature in card.features[:2] %}
+                    <span class="feature-pill">{{ feature }}</span>
+                    {% endfor %}
+                </div>
                 {% endif %}
 
                 <!-- Партнёрская ссылка приоритетнее обычной; если её нет — ведём по основной -->
