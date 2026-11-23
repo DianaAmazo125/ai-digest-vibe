@@ -6,6 +6,24 @@
     <title>AI.VIBE — Умный AI-Дайджест проверенных нейросетей</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;display=swap" rel="stylesheet">
+
+    <!-- Yandex.Metrika counter -->
+    <script>
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
+
+        ym(114596785, 'init', {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/114596785" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
 </head>
 <body>
     <div class="container">
@@ -177,6 +195,30 @@
     }
 });
 
+    </script>
+<!-- ОТСЛЕЖИВАНИЕ ЦЕЛЕЙ ЯНДЕКС МЕТРИКИ -->
+    <script>
+        document.addEventListener('click', function(e) {
+            if (typeof ym !== 'function') return;
+
+            // Клик по кнопке карточки каталога (.btn)
+            var btn = e.target.closest('.btn');
+            if (btn) {
+                var card = btn.closest('.catalog-card');
+                if (card) {
+                    var titleEl = card.querySelector('h3');
+                    var titleText = titleEl ? titleEl.textContent.trim() : '';
+                    ym(114596785, 'reachGoal', 'card_click', {service: titleText});
+                    return;
+                }
+            }
+
+            // Клик по ссылкам соцсетей (Telegram, ВКонтакте)
+            var socialLink = e.target.closest('.social-btn');
+            if (socialLink) {
+                ym(114596785, 'reachGoal', 'social_click');
+            }
+        });
     </script>
 </body>
 </html>
