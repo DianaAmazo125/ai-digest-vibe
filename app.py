@@ -55,6 +55,11 @@ def timeweb_verify():
         return content, 200, {'Content-Type': 'text/plain; charset=utf-8'}
     return 'Not found', 404
 
+@app.route('/start')
+def start():
+    """Посадочная страница «Маршрут старта»"""
+    return render_template('start.html')
+
 @app.route('/')
 def index():
     # Загружаем динамические карточки из data.json

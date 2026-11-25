@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI.VIBE · Маршрут старта</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <style>
+        /* ============================================================
+           GLOBAL RESET & BASE
+           ============================================================ */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #090B14;
+            color: #E2E8F0;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* ============================================================
+           CANVAS — ПАРЯЩИЕ ЧАСТИЦЫ ЗВЁЗДНОЙ ПЫЛИ
+           ============================================================ */
+        #stardust {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ============================================================
+           КОСМИЧЕСКИЕ ТУМАННОСТИ (CSS-анимация)
+           ============================================================ */
+        .nebula {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            will-change: transform, opacity;
+        }
+        .nebula-1 {
+            /* Бирюзово-изумрудная туманность */
+            width: 900px; height: 900px;
+            background: radial-gradient(circle at 40% 50%,
+                rgba(20, 220, 180, 0.12) 0%,
+                rgba(0, 200, 140, 0.07) 30%,
+                transparent 65%
+            );
+            top: -10%; left: -10%;
+            animation: driftNebula1 22s ease-in-out infinite alternate;
+        }
+        .nebula-2 {
+            /* Фиолетово-сапфировая туманность */
+            width: 800px; height: 800px;
+            background: radial-gradient(circle at 60% 40%,
+                rgba(140, 60, 255, 0.10) 0%,
+                rgba(80, 40, 200, 0.06) 30%,
+                transparent 60%
+            );
+            bottom: -15%; right: -10%;
+            animation: driftNebula2 25s ease-in-out infinite alternate;
+        }
+
+        @keyframes driftNebula1 {
+            0%   { transform: translate(0, 0) scale(1); opacity: 0.6; }
+            50%  { transform: translate(60px, -40px) scale(1.12); opacity: 0.85; }
+            100% { transform: translate(-30px, 30px) scale(0.95); opacity: 0.5; }
+        }
+        @keyframes driftNebula2 {
+            0%   { transform: translate(0, 0) scale(1); opacity: 0.5; }
+            50%  { transform: translate(-50px, 30px) scale(1.08); opacity: 0.8; }
+            100% { transform: translate(40px, -50px) scale(0.92); opacity: 0.45; }
+        }
+
+        /* Третья малая туманность для глубины */
+        .nebula-3 {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle at 50% 50%,
+                rgba(60, 180, 255, 0.06) 0%,
+                transparent 50%
+            );
+            top: 40%; left: 50%;
+            transform: translate(-50%, -50%);
+            animation: driftNebula3 18s ease-in-out infinite alternate;
+        }
+        @keyframes driftNebula3 {
+            0%   { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+            100% { transform: translate(-40%, -60%) scale(1.15); opacity: 0.5; }
+        }
+
+        /* ============================================================
+           КОНТЕЙНЕР — расширен до 1180px
+           ============================================================ */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 32px 28px 80px;
+        }
+
+        /* ============================================================
+           ВЕРХНЯЯ НАВИГАЦИЯ
+           ============================================================ */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .nav-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255, 255, 255, 0.50);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+            padding: 8px 0;
+        }
+        .nav-back:hover {
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(255,255,255,0.15);
+        }
+        .nav-logo {
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, #E2E8F0, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        @supports (-webkit-text-fill-color: transparent) {
+            .nav-logo {
+                color: transparent;
+            }
+        }
+
+        /* ============================================================
+           HERO — просторный первый экран
+           ============================================================ */
+        .hero {
+            text-align: center;
+            padding: 70px 0 50px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: heroFadeIn 1s ease-out forwards;
+        }
+        @keyframes heroFadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.12;
+            margin-bottom: 18px;
+            color: #ffffff;
+            text-shadow: 0 0 50px rgba(255,255,255,0.07);
+        }
+        .hero h1 span {
+            background: linear-gradient(135deg, #34d399, #22c5c5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.7;
+        }
+
+        /* ============================================================
+           СТЕКЛЯННЫЙ БЛОК ДОВЕРИЯ — облегчённое стекло
+           ============================================================ */
+        .trust-block {
+            background: rgba(14, 18, 34, 0.42);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-left: 3px solid #34d399;
+            border-radius: 20px;
+            padding: 28px 34px;
+            margin: 40px 0 48px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.30);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .trust-block.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .trust-block h2 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 14px;
+            text-shadow: 0 0 20px rgba(255,255,255,0.05);
+        }
+        .trust-block p {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.62);
+            line-height: 1.7;
+        }
+
+        /* ============================================================
+           WORKFLOW CHAIN
+           ============================================================ */
+        .workflow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 56px;
+            flex-wrap: wrap;
+        }
+        .workflow-node {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 40px;
+            padding: 10px 20px 10px 16px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6);
+            white-space: nowrap;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+        .workflow-node .step-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(52, 211, 153, 0.15);
+            color: #34d399;
+            font-size: 0.75rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .workflow-arrow {
+            color: rgba(52, 211, 153, 0.35);
+            font-size: 1.2rem;
+            font-weight: 300;
+            flex-shrink: 0;
+        }
+
+        /* ============================================================
+           КОНТЕЙНЕР КАРТОЧЕК — вертикальный стак с 72px зазором
+           ============================================================ */
+        .cards-container {
+            display: flex;
+            flex-direction: column;
+            gap: 72px;
+            margin-bottom: 0;
+        }
+
+        /* ============================================================
+           СТЕКЛЯННАЯ КАРТОЧКА (Glassmorphism) — Zig-Zag макет
+           ============================================================ */
+        .bento-card {
+            display: grid;
+            grid-template-columns: 1.45fr 1fr;
+            align-items: center;
+            background: rgba(14, 18, 34, 0.42);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35),
+                        0 0 0 0 rgba(52, 211, 153, 0);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.4s ease;
+            opacity: 0;
+            transform: translateY(40px) scale(0.97);
+        }
+
+        /* Анимация появления при скролле */
+        .bento-card.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Свечение и парение при наведении */
+        .bento-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45),
+                        0 0 60px rgba(52, 211, 153, 0.12);
+            border-color: rgba(255, 255, 255, 0.22);
+        }
+
+        /* Чередование: 2-я и 4-я карточки — картинка справа */
+        .card-reversed {
+            grid-template-columns: 1fr 1.45fr;
+        }
+        .card-reversed .card-cover-wrap { order: 2; }
+        .card-reversed .card-body        { order: 1; }
+
+        /* ============================================================
+           ОБЛОЖКА КАРТОЧКИ — широкая, min-height 330px
+           ============================================================ */
+        .card-cover-wrap {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            width: 100%;
+            height: auto;
+            min-height: unset;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+        .card-cover-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+            will-change: transform;
+        }
+        /* Плавный scale(1.04) при наведении на карточку */
+        .bento-card:hover .card-cover-wrap img {
+            transform: scale(1.04);
+        }
+
+        /* Градиентный переход от обложки к тексту */
+        .card-cover-fade {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: linear-gradient(to top,
+                rgba(14, 18, 34, 0.92) 0%,
+                rgba(14, 18, 34, 0.25) 40%,
+                transparent 100%
+            );
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Стеклянный бейдж на обложке */
+        .cover-badge {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            z-index: 3;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(10, 14, 26, 0.50);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 14px;
+            padding: 7px 18px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.90);
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+        }
+        .cover-badge .badge-speaker {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: rgba(255,255,255,0.82);
+            font-weight: 500;
+            font-size: 0.70rem;
+        }
+        .cover-badge .badge-speaker::before {
+            content: "🎤";
+            font-size: 0.7rem;
+        }
+        .cover-badge .badge-divider {
+            opacity: 0.35;
+            margin: 0 2px;
+        }
+
+        /* ============================================================
+           ТЕЛО КАРТОЧКИ — просторные отступы 32px 38px
+           ============================================================ */
+        .card-body {
+            padding: 32px 38px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        /* Заголовок карточки — 23–25px (1.5rem = 24px) */
+        .bento-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 14px;
+            color: #ffffff;
+        }
+
+        /* Описание — 16px, #F1F5F9 */
+        .bento-card .card-desc {
+            font-size: 1rem;
+            color: #F1F5F9;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Блок «Что разберёте на эфире» */
+        .checklist-block {
+            margin-bottom: 22px;
+        }
+        .checklist-block .checklist-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #34d399;
+            margin-bottom: 10px;
+            letter-spacing: 0.2px;
+        }
+        .checklist-block ul {
+            list-style: none;
+            padding: 0;
+        }
+        .checklist-block ul li {
+            position: relative;
+            padding-left: 22px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.72);
+            line-height: 1.5;
+            margin-bottom: 6px;
+        }
+        .checklist-block ul li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #34d399;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        /* Кнопка */
+        .bento-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #34d399, #22c5c5);
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            padding: 15px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.3s ease;
+            width: 100%;
+            margin-top: 6px;
+            box-shadow: 0 4px 20px rgba(52, 211, 153, 0.20);
+        }
+        .bento-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(52, 211, 153, 0.35);
+        }
+
+        /* Маркировка рекламы */
+        .erid-line {
+            margin-top: 12px;
+            font-size: 0.64rem;
+            color: rgba(255, 255, 255, 0.20);
+            line-height: 1.4;
+        }
+
+        /* ============================================================
+           БОНУС-БЛОК — двухколоночный стеклянный блок с 5-й обложкой
+           ============================================================ */
+        .bonus-block {
+            display: grid;
+            grid-template-columns: 1.25fr 1fr;
+            align-items: stretch;
+            background: rgba(14, 18, 34, 0.42);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(52, 211, 153, 0.15);
+            border-top: 3px solid #34d399;
+            border-radius: 24px;
+            overflow: hidden;
+            margin-top: 56px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .bonus-block.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .bonus-cover {
+            position: relative;
+            min-height: 280px;
+            height: 100%;
+            overflow: hidden;
+        }
+        .bonus-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .bonus-body {
+            padding: 36px 42px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: left;
+        }
+        .bonus-body h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #ffffff;
+            text-shadow: 0 0 30px rgba(255,255,255,0.05);
+        }
+        .bonus-body p {
+            max-width: 100%;
+            margin: 0 0 24px;
+            font-size: 1rem;
+            color: #F1F5F9;
+            line-height: 1.7;
+        }
+        .bonus-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #34d399, #22c5c5);
+            color: #ffffff;
+            border: none;
+            border-radius: 14px;
+            padding: 16px 34px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 25px rgba(52, 211, 153, 0.20);
+            align-self: flex-start;
+        }
+        .bonus-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(52, 211, 153, 0.35);
+        }
+
+        /* ============================================================
+           ПОДВАЛ
+           ============================================================ */
+        .start-footer {
+            margin-top: 56px;
+            padding: 32px 0 0;
+            text-align: center;
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.18);
+            line-height: 1.6;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* ============================================================
+           АДАПТИВНОСТЬ
+           ============================================================ */
+
+        /* Планшеты / узкий десктоп — сворачиваем карточки в 1 колонку */
+        @media (max-width: 900px) {
+            .bento-card {
+                grid-template-columns: 1fr;
+            }
+            .card-reversed {
+                grid-template-columns: 1fr;
+            }
+            .card-reversed .card-cover-wrap,
+            .card-reversed .card-body {
+                order: 0; /* Сброс чередования → HTML-порядок (картинка сверху) */
+            }
+            .card-body {
+                padding: 26px 28px;
+            }
+            .bento-card h3 {
+                font-size: 1.3rem;
+            }
+            .bonus-block {
+                grid-template-columns: 1fr;
+            }
+            .bonus-body {
+                padding: 28px 28px;
+                text-align: center;
+            }
+            .bonus-btn { align-self: center; }
+        }
+
+        /* Мобильные */
+        @media (max-width: 720px) {
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            .workflow { flex-direction: column; align-items: stretch; }
+            .workflow-arrow { transform: rotate(90deg); text-align: center; }
+            .workflow-node { justify-content: center; }
+            .top-nav { flex-direction: column; align-items: flex-start; }
+            .container { padding: 24px 16px 60px; }
+            .bonus-body { padding: 28px 24px; text-align: center; }
+            .bonus-btn { align-self: center; }
+            .card-cover-wrap { aspect-ratio: 16 / 9; }
+            .bento-card h3 { font-size: 1.15rem; }
+            .bento-card .card-desc { font-size: 0.92rem; }
+            .card-body { padding: 22px 22px; }
+            .cover-badge {
+                font-size: 0.68rem;
+                padding: 5px 12px;
+                bottom: 10px;
+                left: 10px;
+            }
+            .trust-block { padding: 22px 20px; }
+            .hero { padding: 40px 0 30px; }
+            .cards-container { gap: 48px; }
+        }
+
+        @media (max-width: 480px) {
+            .card-cover-wrap { aspect-ratio: 16 / 9; }
+            .cover-badge { flex-wrap: wrap; gap: 4px; }
+        }
+    </style>
+
+    <!-- Yandex.Metrika counter -->
+    <script>
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
+
+        ym(114596785, 'init', {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/114596785" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+</head>
+<body>
+
+    <!-- ============================================================
+    CANVAS ЗВЁЗДНАЯ ПЫЛЬ
+    ============================================================ -->
+    <canvas id="stardust"></canvas>
+
+    <!-- ============================================================
+    КОСМИЧЕСКИЕ ТУМАННОСТИ
+    ============================================================ -->
+    <div class="nebula nebula-1"></div>
+    <div class="nebula nebula-2"></div>
+    <div class="nebula nebula-3"></div>
+
+    <!-- ============================================================
+    ОСНОВНОЙ КОНТЕНТ
+    ============================================================ -->
+    <div class="container">
+
+        <!-- Верхняя навигация -->
+        <nav class="top-nav">
+            <a href="{{ url_for('index') }}" class="nav-back">← К каталогу 35 нейросетей</a>
+            <span class="nav-logo">AI.VIBE</span>
+        </nav>
+
+        <!-- Hero — просторный первый экран -->
+        <section class="hero">
+            <h1>AI.VIBE · <span>Маршрут старта</span></h1>
+            <p>Личная подборка проверенных бесплатных практикумов без инфошума — от первых шагов в нейросетях и создания сайтов до заработка на партнёрских программах. Всё, что нужно для уверенного старта.</p>
+        </section>
+
+        <!-- Trust block — стеклянный, облегчённый -->
+        <div class="trust-block scroll-fade">
+            <h2>Почему я собрала эти 4 программы</h2>
+            <p>Я сама начинала путь в нейросетях, создании сайтов и партнёрках с нуля — без технического образования. Среди сотен курсов в интернете легко запутаться, поэтому я отобрала сюда только проверенные бесплатные практикумы от спикеров с высоким рейтингом, которые дают реальную базу без воды и обязательств.</p>
+        </div>
+
+        <!-- Workflow chain -->
+        <div class="workflow">
+            <div class="workflow-node">
+                <span class="step-num">01</span>
+                <span>Нейросети и старт</span>
+            </div>
+            <span class="workflow-arrow">—►</span>
+            <div class="workflow-node">
+                <span class="step-num">02</span>
+                <span>Свой сайт и лендинги</span>
+            </div>
+            <span class="workflow-arrow">—►</span>
+            <div class="workflow-node">
+                <span class="step-num">03</span>
+                <span>Партнёрки и доход</span>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        CARD-CONTAINER — 4 карточки с 72px звёздного пространства между ними
+        ============================================================ -->
+        <div class="cards-container">
+
+            <!-- ============================================================
+            КАРТОЧКА 1 — Артём Мазур / Нейросети
+            (картинка слева, текст справа — стандарт)
+            ============================================================ -->
+            <div class="bento-card scroll-fade">
+                <div class="card-cover-wrap">
+                    <img src="{{ url_for('static', filename='img/cover_ai.jpg') }}" alt="Первые деньги на нейросетях">
+                    <div class="card-cover-fade"></div>
+                    <div class="cover-badge">
+                        <span>Шаг 1 · Бесплатно · 4 дня</span>
+                        <span class="badge-divider">|</span>
+                        <span class="badge-speaker">Артём Мазур</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h3>Первые деньги на нейросетях: обзор ниш для новичков</h3>
+                    <p class="card-desc">Бесплатный мастер-класс Артёма Мазура о том, какой контент можно делать с помощью ИИ (иллюстрации, презентации, тексты) и кому предлагать эти услуги на старте.</p>
+
+                    <div class="checklist-block">
+                        <div class="checklist-title">Что разберёте на эфире:</div>
+                        <ul>
+                            <li>Какие задачи бизнеса и клиентов легко закрывать через нейросети</li>
+                            <li>Как создавать иллюстрации, презентации и тексты без навыков дизайна</li>
+                            <li>Где искать первых заказчиков и как упаковать свои услуги</li>
+                        </ul>
+                    </div>
+
+                    <a href="https://ihclick.ru/?p=266319&amp;o=323111&amp;idp=336212&amp;erid=2Vtzqud14ep" target="_blank" rel="nofollow noopener" class="bento-btn">Записаться бесплатно →</a>
+                    <div class="erid-line">Реклама. ИП Мазур Артём Александрович. ИНН 600401603443. erid: 2Vtzqud14ep</div>
+                </div>
+            </div>
+
+            <!-- ============================================================
+            КАРТОЧКА 2 — Евгений Вергус / Сайт за 3 занятия
+            (картинка справа, текст слева — reversed)
+            ============================================================ -->
+            <div class="bento-card card-reversed scroll-fade">
+                <div class="card-cover-wrap">
+                    <img src="{{ url_for('static', filename='img/cover_site.jpg') }}" alt="Как всего за 3 занятия создать свой сайт">
+                    <div class="card-cover-fade"></div>
+                    <div class="cover-badge">
+                        <span>Шаг 2 · Бесплатно · 3 занятия</span>
+                        <span class="badge-divider">|</span>
+                        <span class="badge-speaker">Евгений Вергус</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h3>Как всего за 3 занятия создать свой сайт для заработка</h3>
+                    <p class="card-desc">Практикум Евгения Вергуса с высоким рейтингом: пошаговая сборка рабочего сайта с нуля без сложных технических знаний.</p>
+
+                    <div class="checklist-block">
+                        <div class="checklist-title">Что разберёте на эфире:</div>
+                        <ul>
+                            <li>Выбор ниши, домена и настройка рабочего сайта без программирования</li>
+                            <li>Правильная структура страниц, которая привлекает трафик из поиска</li>
+                            <li>Первые шаги к монетизации сайта через партнёрские программы</li>
+                        </ul>
+                    </div>
+
+                    <a href="https://ihclick.ru/?p=64399&amp;o=223987&amp;idp=336212&amp;erid=2Vtzquwgdjv" target="_blank" rel="nofollow noopener" class="bento-btn">Записаться бесплатно →</a>
+                    <div class="erid-line">Реклама. ИП Вергус Е.Е. ИНН 262407175803. erid: 2Vtzquwgdjv</div>
+                </div>
+            </div>
+
+            <!-- ============================================================
+            КАРТОЧКА 3 — Евгений Вергус / Лендинги
+            (картинка слева, текст справа — стандарт)
+            ============================================================ -->
+            <div class="bento-card scroll-fade">
+                <div class="card-cover-wrap">
+                    <img src="{{ url_for('static', filename='img/cover_lp_1.jpg') }}" alt="Конструктор Landing Page">
+                    <div class="card-cover-fade"></div>
+                    <div class="cover-badge">
+                        <span>Шаг 3 · Бесплатно · Онлайн</span>
+                        <span class="badge-divider">|</span>
+                        <span class="badge-speaker">Евгений Вергус</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h3>Конструктор Landing Page для запуска проектов</h3>
+                    <p class="card-desc">Бесплатный вебинар Евгения Вергуса о том, как быстро собирать конверсионные посадочные страницы под свои проекты и партнёрские предложения.</p>
+
+                    <div class="checklist-block">
+                        <div class="checklist-title">Что разберёте на эфире:</div>
+                        <ul>
+                            <li>Из каких блоков состоит продающая страница с высокой конверсией</li>
+                            <li>Быстрая сборка лендинга на конструкторе без затрат на верстальщика</li>
+                            <li>Как связать лендинг с подписной базой и партнёрскими ссылками</li>
+                        </ul>
+                    </div>
+
+                    <a href="https://ihclick.ru/?p=64399&amp;o=285808&amp;idp=336212&amp;erid=2Vtzqv84YiL" target="_blank" rel="nofollow noopener" class="bento-btn">Записаться бесплатно →</a>
+                    <div class="erid-line">Реклама. ИП Вергус Е.Е. ИНН 262407175803. erid: 2Vtzqv84YiL</div>
+                </div>
+            </div>
+
+            <!-- ============================================================
+            КАРТОЧКА 4 — Дмитрий Батухтин / Удалённый заработок
+            (картинка справа, текст слева — reversed)
+            ============================================================ -->
+            <div class="bento-card card-reversed scroll-fade">
+                <div class="card-cover-wrap">
+                    <img src="{{ url_for('static', filename='img/cover_income.jpg') }}" alt="Система удалённого заработка">
+                    <div class="card-cover-fade"></div>
+                    <div class="cover-badge">
+                        <span>Шаг 4 · Бесплатно · 90 мин</span>
+                        <span class="badge-divider">|</span>
+                        <span class="badge-speaker">Дмитрий Батухтин</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h3>Система удалённого заработка за полчаса в день</h3>
+                    <p class="card-desc">Бесплатный мастер-класс Дмитрия Батухтина о том, как выстраивать автоматические воронки и зарабатывать на партнёрских программах без создания своих курсов.</p>
+
+                    <div class="checklist-block">
+                        <div class="checklist-title">Что разберёте на эфире:</div>
+                        <ul>
+                            <li>Как устроена система заработка на партнёрках без создания своих курсов</li>
+                            <li>Какие бесплатные и простые способы трафика работают сейчас</li>
+                            <li>Пошаговый план запуска первой автоматической воронки</li>
+                        </ul>
+                    </div>
+
+                    <a href="https://ihclick.ru/?p=247299&amp;o=316533&amp;idp=336212&amp;erid=2VtzqwaZbPa" target="_blank" rel="nofollow noopener" class="bento-btn">Записаться бесплатно →</a>
+                    <div class="erid-line">Реклама. ИП Батухтин Д.Г. ИНН 663003506540. erid: 2VtzqwaZbPa</div>
+                </div>
+            </div>
+
+        </div><!-- /cards-container -->
+
+        <!-- ============================================================
+        БОНУС-БЛОК — двухколоночный стеклянный блок с обложкой
+        ============================================================ -->
+        <div class="bonus-block scroll-fade">
+            <div class="bonus-cover">
+                <img src="{{ url_for('static', filename='img/cover_partner.jpg') }}" alt="Каталог партнёрских программ ИнфоХит" style="width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 16px; display: block;">
+            </div>
+            <div class="bonus-body">
+                <h2>Хотите монетизировать свой блог или сайт?</h2>
+                <p>Не обязательно создавать свой курс с нуля. В едином каталоге партнёрских программ ИнфоХит собрано более 1 500 проверенных онлайн-школ по нейросетям, IT и удалёнке с готовой автоматической маркировкой рекламы erid. Я сама использую эту площадку для подбора программ в этот раздел.</p>
+                <a href="https://ihclick.ru/?type=p&amp;link=%2Fprograms%2F&amp;idp=336212" target="_blank" rel="nofollow noopener" class="bonus-btn">Открыть каталог партнёрок →</a>
+            </div>
+        </div>
+
+        <footer class="start-footer">
+            AI.VIBE · Маршрут старта — подборка партнёрских программ. Все ссылки содержат маркировку рекламы erid.
+        </footer>
+    </div>
+
+    <!-- ============================================================
+    СКРИПТЫ
+    ============================================================ -->
+    <script>
+        /* ----------------------------------------
+           CANVAS — ЗВЁЗДНАЯ ПЫЛЬ С РЕАКЦИЕЙ НА МЫШЬ
+           ---------------------------------------- */
+        (function() {
+            var canvas = document.getElementById('stardust');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+
+            var particles = [];
+            var PARTICLE_COUNT = 140;
+            var mouseX = -1000, mouseY = -1000;
+            var width, height;
+
+            function resize() {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = width;
+                canvas.height = height;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            /* Инициализация частиц */
+            for (var i = 0; i < PARTICLE_COUNT; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    size: 0.4 + Math.random() * 2.4,
+                    speedX: (Math.random() - 0.5) * 0.2,
+                    speedY: -0.08 - Math.random() * 0.35,
+                    opacity: 0.12 + Math.random() * 0.55,
+                    pulseSpeed: 0.3 + Math.random() * 0.8,
+                    pulseOffset: Math.random() * Math.PI * 2
+                });
+            }
+
+            /* Реакция на движение мыши */
+            document.addEventListener('mousemove', function(e) {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+            document.addEventListener('mouseleave', function() {
+                mouseX = -1000;
+                mouseY = -1000;
+            });
+
+            var time = 0;
+
+            function drawParticles() {
+                time += 0.016;
+                ctx.clearRect(0, 0, width, height);
+
+                for (var i = 0; i < particles.length; i++) {
+                    var p = particles[i];
+
+                    /* Пульсация яркости */
+                    var pulse = Math.sin(time * p.pulseSpeed + p.pulseOffset) * 0.3 + 0.7;
+                    var alpha = p.opacity * pulse;
+
+                    /* Реакция на курсор — мягкое отталкивание */
+                    if (mouseX > 0 && mouseY > 0) {
+                        var dx = p.x - mouseX;
+                        var dy = p.y - mouseY;
+                        var dist = Math.sqrt(dx*dx + dy*dy);
+                        if (dist < 180 && dist > 1) {
+                            var force = (180 - dist) / 180 * 0.8;
+                            p.x += (dx / dist) * force;
+                            p.y += (dy / dist) * force;
+                        }
+                    }
+
+                    /* Движение */
+                    p.x += p.speedX;
+                    p.y += p.speedY;
+
+                    /* Зацикливание */
+                    if (p.y < -20) {
+                        p.y = height + 10;
+                        p.x = Math.random() * width;
+                    }
+                    if (p.x < -20) p.x = width + 10;
+                    if (p.x > width + 20) p.x = -10;
+
+                    /* Рисуем частицу */
+                    var glow = p.size * 2.5;
+                    var grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glow);
+                    grad.addColorStop(0, 'rgba(200, 225, 255, ' + (alpha * 0.6) + ')');
+                    grad.addColorStop(0.4, 'rgba(160, 200, 240, ' + (alpha * 0.3) + ')');
+                    grad.addColorStop(1, 'rgba(160, 200, 240, 0)');
+                    ctx.fillStyle = grad;
+                    ctx.fillRect(p.x - glow, p.y - glow, glow * 2, glow * 2);
+
+                    /* Ядро */
+                    ctx.fillStyle = 'rgba(230, 240, 255, ' + (alpha * 0.9) + ')';
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size * 0.6, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                requestAnimationFrame(drawParticles);
+            }
+
+            drawParticles();
+
+            /* Ре-инициализация частиц при изменении размера окна */
+            window.addEventListener('resize', function() {
+                for (var i = 0; i < particles.length; i++) {
+                    var p = particles[i];
+                    if (p.x > width) p.x = Math.random() * width;
+                    if (p.y > height) p.y = Math.random() * height;
+                }
+            });
+        })();
+
+        /* ----------------------------------------
+           INTERSECTION OBSERVER — ПЛАВНОЕ ПОЯВЛЕНИЕ
+           ---------------------------------------- */
+        (function() {
+            var targets = document.querySelectorAll('.scroll-fade');
+
+            if (targets.length === 0) return;
+
+            var observer = new IntersectionObserver(function(entries) {
+                for (var i = 0; i < entries.length; i++) {
+                    var entry = entries[i];
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                }
+            }, {
+                threshold: 0.08,
+                rootMargin: '0px 0px -40px 0px'
+            });
+
+            for (var i = 0; i < targets.length; i++) {
+                observer.observe(targets[i]);
+            }
+        })();
+
+        /* ----------------------------------------
+           ОТСЛЕЖИВАНИЕ ЦЕЛЕЙ ЯНДЕКС МЕТРИКИ
+           ---------------------------------------- */
+        document.addEventListener('click', function(e) {
+            if (typeof ym !== 'function') return;
+
+            var btn = e.target.closest('.bento-btn');
+            if (btn) {
+                var card = btn.closest('.bento-card');
+                if (card) {
+                    var titleEl = card.querySelector('h3');
+                    var titleText = titleEl ? titleEl.textContent.trim() : '';
+                    ym(114596785, 'reachGoal', 'start_card_click', {service: titleText});
+                    return;
+                }
+            }
+
+            var bonusBtn = e.target.closest('.bonus-btn');
+            if (bonusBtn) {
+                ym(114596785, 'reachGoal', 'start_bonus_click');
+                return;
+            }
+
+            var backLink = e.target.closest('.nav-back');
+            if (backLink) {
+                ym(114596785, 'reachGoal', 'start_back_to_catalog');
+            }
+        });
+    </script>
+</body>
+</html>
+
